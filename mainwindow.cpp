@@ -20,6 +20,8 @@ ELEMENT Elm[] =
   {0,"",""}
 };
 
+int nb=1;
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,8 +30,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) , ui(new Ui::MainW
   ui->setupUi(this);
 
   //***** A modifier ***********************
-  setNom(Elm[1].nom);
-  setEmail(Elm[1].email);
+  setNom(Elm[nb].nom);
+  setEmail(Elm[nb].email);
   //****************************************
 }
 
@@ -70,16 +72,30 @@ void MainWindow::on_pushButtonSuivant_clicked()
 {
   fprintf(stderr,"Clic sur le bouton >>>\n");
   // TO DO
+  if(Elm[nb+1].id !=0)
+  {
+    nb++;
+    setNom(Elm[nb].nom);
+    setEmail(Elm[nb].email);
+  }
+
 }
 
 void MainWindow::on_pushButtonPrecedent_clicked()
 {
   fprintf(stderr,"Clic sur le bouton <<<\n");
   // TO DO
+  if(Elm[nb].id !=1)
+  {
+    nb--;
+    setNom(Elm[nb].nom);
+    setEmail(Elm[nb].email);
+  }
 }
 
 void MainWindow::on_pushButtonQuitter_clicked()
 {
   fprintf(stderr,"Clic sur le bouton Quitter\n");
   // TO DO
+  exit(1);
 }
